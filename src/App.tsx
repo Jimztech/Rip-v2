@@ -1,7 +1,9 @@
+import Chat from "./components/Chat";
+
 function App() {
   return (
-    <div>
-      <p>Rip-v2</p>
+    <div className="">
+      <Chat />
     </div>
   )
 }
