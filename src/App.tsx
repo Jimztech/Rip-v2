@@ -4,6 +4,8 @@ function App() {
   return (
     <div className="">
       <Chat />
+
+      <div></div>
     </div>
   )
 }

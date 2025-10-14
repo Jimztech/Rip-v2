@@ -1,4 +1,4 @@
-import { ArrowUpIcon } from "lucide-react";
+import { ArrowUpIcon, X } from "lucide-react";
 import { IconPlus } from "@tabler/icons-react";
 import {
   InputGroup,
@@ -9,6 +9,8 @@ import {
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/ChatSidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 
@@ -125,7 +127,19 @@ export default function Chat({ children }: {children: React.ReactNode}) {
                     </div>
                     
                     {/* Search Overlay */}
-                    <div>{/* Search overlay content */}</div>
+                    {showOverlay && (
+                        <div className="absolute bottom-24 left-0 right-0 mx-auto max-w-3xl px-4 animate-fade-in">
+                            <div className="p-4 mb-2 bg-blue-500/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg">
+                                <div className="flex justify-between items-center mb-4">
+                                    <h3 className="font-semibold">Search Crypto</h3>
+                                    <button onClick={() => setShowOverlay(false)}>
+                                        <X className="w-5 h-5" />
+                                    </button>
+                                </div>
+                                <Input placeholder="Search for any cryptocurrency..." className="glass mb-4" />
+                            </div>
+                        </div>
+                    )}
                 
                     {/* Input area - fixed at bottom */}
                     <div className="border-t bg-white px-4 py-4">
