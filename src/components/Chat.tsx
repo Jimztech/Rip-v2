@@ -1,4 +1,4 @@
-import { ArrowUpIcon, X } from "lucide-react";
+import { ArrowUpIcon, X, LogOut } from "lucide-react";
 import { IconPlus } from "@tabler/icons-react";
 import {
   InputGroup,
@@ -33,6 +33,9 @@ export default function Chat({ children }: {children: React.ReactNode}) {
     const [input, setInput] = useState("");
     const [showOverlay, setShowOverlay] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+
+    const searchAnyCoins = async () => {}
 
     const handleSend = async () => {
         if (!input.trim()) return;

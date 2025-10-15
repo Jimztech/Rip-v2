@@ -258,6 +258,72 @@ async function getTopCryptos(limit = 10) {
 }
 
 
+// Search coins endpoint
+app.get('/api/search-coins', async (req, res) => {
+    try{
+        const { query, limit = 10 } = req.query;
+
+        if (!query) {
+            return res.status(400).json({ error: 'Search query is required' });
+        }
+
+        // Coingecko search endpoint
+        const url = `https://api.coingecko.com/api/v3/search?query=${encodeURIComponent(query)}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-cg-demo-api-key': process.env.COINGECKO_API_KEY,
+                'accept': 'application/json'
+            }
+        };
+
+        const response = await fetch(url, options);
+
+        if(!response.ok) {
+            throw new Error('Failed to search coins');
+        }
+
+        const data = await response.json();
+
+        // Get detailed info for top results
+        const coinIds = data.coins.slice(0, parseInt(limit)).map(coin => coin.id).join(',');
+
+        if(!coinIds) {
+            return res.json({ coins: [] });
+        }
+
+        // Fetch market data for the coins
+        const marketUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${coinIds}&order=market_cap_desc&sparkline=false`;
+        const marketResponse = await fetch(marketUrl, options);
+
+        if(!marketResponse.ok) {
+            throw new Error('Failed to fetch market data');
+        }
+
+        const marketData = await marketResponse.json();
+
+        // Format the response
+        const coins = marketData.map(coin => ({
+            name: coin.name,
+            symbol: coin.symbol.toUpperCase(),
+            change: `${coin.price_change_percentage_24h >= 0 ? '+' : ''}${coin.price_change_percentage_24h?.toFixed(1)}%`,
+            price: coin.current_price,
+            marketCap: coin.market_cap,
+            image: coin.image,
+            id: coin.id
+        }));
+
+        res.json({ coins });
+    } catch(error) {
+        console.error('Search coins error:', error);
+        res.status(500).json({
+            error: 'Failed to search coins',
+            details: error.message 
+        });
+    }
+});
+
+
 // Chat endpoint
 app.post('/api/chat', async (req, res) => {
     try {
