@@ -1,4 +1,4 @@
-import { ArrowUpIcon, X, LogOut } from "lucide-react";
+import { ArrowUpIcon, X} from "lucide-react";
 import { IconPlus } from "@tabler/icons-react";
 import {
   InputGroup,
@@ -24,7 +24,7 @@ interface Message {
 interface Coin {
     name: string,
     symbol: string,
-    change: string,
+    change?: string,
     price: number,
     marketCap: number,
     image: string,
@@ -36,7 +36,7 @@ const user = { name: "User" };
 const API_URL = import.meta.env.VITE_API_URL || '';
 
 
-export default function Chat({ children }: {children: React.ReactNode}) {
+export default function Chat() {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: 1,
@@ -160,7 +160,7 @@ export default function Chat({ children }: {children: React.ReactNode}) {
                 
                     {/* Chat messages area - scrollable */}
                     <div className="flex-1 overflow-y-auto p-4">
-                        {children}
+                        {/*Children */}
                         {/* Your chat messages will go here */}
                         <ScrollArea className="flex-1 p-6">
                             <div className="max-w-3xl mx-auto space-y-4">
@@ -199,7 +199,7 @@ export default function Chat({ children }: {children: React.ReactNode}) {
                                     onChange={(e) => handleSearchOverlay(e.target.value)} 
                                 />
                                 <div className="flex flex-wrap gap-2">
-                                    {searchResults.length > 0 ? (
+                                    {searchResults && searchResults.length > 0 ? (
                                         searchResults.map((coin) => (
                                             <Button
                                                 key={coin.symbol}
@@ -208,9 +208,11 @@ export default function Chat({ children }: {children: React.ReactNode}) {
                                                 onClick={() => handleCoinSelect(coin)}
                                             >
                                                 <span className="font-semibold">{coin.symbol}</span>
-                                                <span className={`ml-2 text-xs ${coin.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
-                                                    {coin.change}
-                                                </span>
+                                                {coin.change && (
+                                                    <span className={`ml-2 text-xs ${coin.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                                                        {coin.change}
+                                                    </span>
+                                                )}
                                             </Button>
                                         ))
                                     ): (
