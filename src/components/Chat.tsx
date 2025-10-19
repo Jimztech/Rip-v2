@@ -14,10 +14,21 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 
+
 interface Message {
     id: number,
     role: "user" | "assistant",
     content: string,
+}
+
+interface Coin {
+    name: string,
+    symbol: string,
+    change: string,
+    price: number,
+    marketCap: number,
+    image: string,
+    id?: string,
 }
 
 const user = { name: "User" }; 
@@ -34,8 +45,25 @@ export default function Chat({ children }: {children: React.ReactNode}) {
     const [showOverlay, setShowOverlay] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    const [searchResults, setSearchResults] = useState<Coin[]>([]);
+    const [searchQuery, setSearchQuery] = useState<string>("");
 
-    const searchAnyCoins = async () => {}
+
+    const searchAnyCoins = async (searchQuery: string): Promise<Coin[]> => {
+        try{
+            const response = await fetch(`/api/search-coins?query=${encodeURIComponent(searchQuery)}&limit=10`);
+
+            if(!response) {
+                throw new Error('Failed to search coins');
+            }
+
+            const data = await response.json();
+            return data.coins as Coin[];
+        } catch (error) {
+            console.error('Error searching coins:', error);
+            return [];
+        }
+    }
 
     const handleSend = async () => {
         if (!input.trim()) return;
@@ -45,6 +73,9 @@ export default function Chat({ children }: {children: React.ReactNode}) {
             role: "user",
             content: input,
         };
+
+        const coins = await searchAnyCoins("");
+        setSearchResults(coins);
 
         const updatedMessages = [...messages, userMessage];
         setMessages(updatedMessages);
@@ -90,6 +121,25 @@ export default function Chat({ children }: {children: React.ReactNode}) {
         } finally {
             setIsLoading(false);
         }
+    }
+
+
+    // Handler for Search input in overlay
+    const handleSearchOverlay = async (query: string): Promise<void> => {
+        setSearchQuery(query);
+
+        if(query.trim()) {
+            const coins = await searchAnyCoins(query);
+            setSearchResults(coins);
+        } else {
+            setSearchResults([]);
+        }
+    }
+
+    // Handle coin selection
+    const handleCoinSelect = (coin: Coin): void => {
+        setInput(`Tell me about ${coin.name} (${coin.symbol})`);
+        setShowOverlay(false);
     }
 
     return(
@@ -139,7 +189,33 @@ export default function Chat({ children }: {children: React.ReactNode}) {
                                         <X className="w-5 h-5" />
                                     </button>
                                 </div>
-                                <Input placeholder="Search for any cryptocurrency..." className="glass mb-4" />
+                                <Input 
+                                    placeholder="Search for any cryptocurrency..." 
+                                    className="glass mb-4"
+                                    value={searchQuery}
+                                    onChange={(e) => handleSearchOverlay(e.target.value)} 
+                                />
+                                <div className="flex flex-wrap gap-2">
+                                    {searchResults.length > 0 ? (
+                                        searchResults.map((coin) => (
+                                            <Button
+                                                key={coin.symbol}
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={() => handleCoinSelect(coin)}
+                                            >
+                                                <span className="font-semibold">{coin.symbol}</span>
+                                                <span className={`ml-2 text-xs ${coin.change.startsWith('+') ? 'text-green-500' : 'text-red-500'}`}>
+                                                    {coin.change}
+                                                </span>
+                                            </Button>
+                                        ))
+                                    ): (
+                                        <p className="text-sm text-gray-400">
+                                            {searchQuery ? 'No coins found' : 'Type to search...'}
+                                        </p>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     )}
