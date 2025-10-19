@@ -33,6 +33,9 @@ interface Coin {
 
 const user = { name: "User" }; 
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
+
 export default function Chat({ children }: {children: React.ReactNode}) {
     const [messages, setMessages] = useState<Message[]>([
         {
@@ -51,7 +54,7 @@ export default function Chat({ children }: {children: React.ReactNode}) {
 
     const searchAnyCoins = async (searchQuery: string): Promise<Coin[]> => {
         try{
-            const response = await fetch(`/api/search-coins?query=${encodeURIComponent(searchQuery)}&limit=10`);
+            const response = await fetch(`${API_URL}/api/search-coins?query=${encodeURIComponent(searchQuery)}&limit=10`);
 
             if(!response) {
                 throw new Error('Failed to search coins');
@@ -83,7 +86,7 @@ export default function Chat({ children }: {children: React.ReactNode}) {
         setIsLoading(true);
 
         try {
-            const response = await fetch('/api/chat', {
+            const response = await fetch(`${API_URL}/api/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
