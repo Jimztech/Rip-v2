@@ -10,7 +10,11 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors({
-    origin: '*'
+    origin: [
+        'http://localhost:5173',  // Local development
+        'https://rip-v2.vercel.app'  // Production
+    ],
+    credentials: true
 }));
 app.use(express.json());
 
