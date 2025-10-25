@@ -9,17 +9,18 @@ import {
   SidebarMenuItem, 
 } from "@/components/ui/sidebar";
 import { TrendingUp, MessageCirclePlus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // Menu items.
 const items = [
     {
         title: "Trending",
-        url: "#",
+        url: "/trending",
         icon: TrendingUp,
     },
     {
         title: "New chat",
-        url: "#",
+        url: "/",
         icon: MessageCirclePlus,
     },
 ]
@@ -35,10 +36,10 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

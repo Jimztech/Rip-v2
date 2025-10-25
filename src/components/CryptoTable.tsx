@@ -5,11 +5,11 @@ interface CryptoData{
     name: string,
     symbol: string,
     image: string,
-    current_price: number,
+    price: number,
     price_change_percentage_1h_in_currency?: number;
-    price_change_percentage_24h: number;
-    price_change_percentage_7d_in_currency?: number;
-    market_cap: number;
+    percentChange24h: number;
+    percentChange7d?: number;
+    marketCap: number;
     circulating_supply: number;
 }
 
@@ -89,19 +89,19 @@ export default function CryptoTable({ data }: CryptoTableProps) {
                                 </div>
                             </TableCell>
                             <TableCell className="text-right font-semibold">
-                                {formatPrice(coin.current_price)}
+                                {formatPrice(coin.price)}
                             </TableCell>
                             <TableCell className="text-right hidden md:table-cell">
                                 {formatPercentage(coin.price_change_percentage_1h_in_currency)}
                             </TableCell>
                             <TableCell className="text-right">
-                                {formatPercentage(coin.price_change_percentage_24h)}
+                                {formatPercentage(coin.percentChange24h)}
                             </TableCell>
                             <TableCell className="text-right hidden lg:table-cell">
-                                {formatPercentage(coin.price_change_percentage_7d_in_currency)}
+                                {formatPercentage(coin.percentChange7d)}
                             </TableCell>
                             <TableCell className="text-right hidden xl:table-cell">
-                                {formatMarketCap(coin.market_cap)}
+                                {formatMarketCap(coin.marketCap)}
                             </TableCell>
                             <TableCell className="text-right hidden xl:table-cell">
                                 {formatSupply(coin.circulating_supply)}

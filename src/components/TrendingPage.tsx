@@ -11,11 +11,11 @@ interface CryptoData {
     name: string;
     symbol: string;
     image: string;
-    current_price: number;
+    price: number;
     price_change_percentage_1h_in_currency?: number;
-    price_change_percentage_24h: number;
-    price_change_percentage_7d_in_currency?: number;
-    market_cap: number;
+    percentChange24h: number;
+    percentChange7d?: number;
+    marketCap: number;
     circulating_supply: number;
 }
 
@@ -71,7 +71,7 @@ export default function TrendingPage() {
                             <div className="p-3 rounded-xl bg-primary/10 shadow-glow">
                                 <TrendingUp className="h-8 w-8 text-primary" />
                             </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-sky-500">
                                 Trending
                             </h1>
                         </div>

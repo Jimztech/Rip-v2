@@ -233,7 +233,7 @@ async function getNewlyListedCoins() {
 // Function to get Top Cryptocurrencies
 async function getTopCryptos(limit = 10) {
     try {
-        const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false`;
+        const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false&price_change_percentage=1h,24h,7d`;
         const options = {
             method: 'GET',
             headers: {
@@ -256,6 +256,9 @@ async function getTopCryptos(limit = 10) {
             percentChange24h: crypto.price_change_percentage_24h,
             marketCap: crypto.market_cap,
             rank: crypto.market_cap_rank,
+            image: crypto.image, 
+            percentChange7d: crypto.price_change_percentage_7d_in_currency,
+            price_change_percentage_1h_in_currency: crypto.price_change_percentage_1h_in_currency,  // 1 hour
         }));
     } catch (error) {
         console.error('CoinGecko API error:', error);

@@ -51,6 +51,7 @@
   /* Shadows */
   --shadow-glow: 0 0 30px hsla(189 94% 43% / 0.15);
   --shadow-card: 0 4px 20px hsla(222 47% 11% / 0.1);
+
 }
 
 @theme inline {
