@@ -1,4 +1,5 @@
 import Chat from "./components/Chat";
+import LandingPage from "./components/LandingPage";
 import TrendingPage from "./components/TrendingPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -10,7 +11,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Chat />} />
+          <Route path="/" element={<LandingPage />} />
+
+          <Route path="/chat" element={<Chat />} />
 
           <Route path="/trending" element={<TrendingPage />} />
 

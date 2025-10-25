@@ -20,7 +20,7 @@ const items = [
     },
     {
         title: "New chat",
-        url: "/",
+        url: "/chat",
         icon: MessageCirclePlus,
     },
 ]
