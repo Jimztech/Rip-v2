@@ -13,7 +13,7 @@ export default function Navbar() {
                 <div className="px-6 py-3 glass-card">
                     <div className="flex items-center justify-between">
                         <Link to="/" className="flex items-center gap-2 text-xl font-bold">
-                            <span>Rip</span>
+                            <span className="text-sky-500">Rip</span>
                         </Link>
 
                         {/* Desktop Navigation */}

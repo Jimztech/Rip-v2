@@ -8,8 +8,8 @@ export default function Footer() {
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <span>Built with</span>
-                            <Heart />
-                            <span>Rip | © 2025</span>
+                            <Heart className='fill-red-500' />
+                            <span>Rip | © {new Date().getFullYear()}</span>
                         </div>
 
                         <div className="flex items-center gap-6">

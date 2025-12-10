@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Brain } from "lucide-react";
+import { TrendingUp, Brain, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -14,7 +14,7 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto text-center">
                     <div className="animate-fade-up">
                         <div className="flex items-center justify-center mb-6">
-                            <h1 className="text-6xl md:text-7xl font-bold">Rip</h1>
+                            <h1 className="text-6xl md:text-7xl font-bold text-sky-500">Rip</h1>
                         </div>
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
                             AI-Powered Crypto Insights. Be Early. Be Smart.
@@ -86,7 +86,7 @@ export default function LandingPage() {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="glass-card p-8 text-center animate-fade-up" style={{ animationDelay: "0.5s" }}>
+                        <div className="glass-card p-8 text-center animate-fade-up my-4">
                             <Brain className="w-12 h-12 text-primary mx-auto mb-4" />
                             <h3 className="text-xl font-bold mb-2">Get AI Crypto Advice</h3>
                             <p className="text-muted-foreground">
@@ -95,7 +95,21 @@ export default function LandingPage() {
                         </div>
                     </div>
 
-                    <div></div>
+                    <div className="glass-card p-8 text-center animate-fade-up my-4">
+                        <Clock className="w-12 h-12 text-primary mx-auto mb-4" />
+                        <h3 className="text-xl font-bold mb-2">Track New Coins Early</h3>
+                        <p className="text-muted-foreground">
+                            Discover emerging cryptocurrencies before they hit mainstream
+                        </p>
+                    </div>
+
+                    <div className="glass-card p-8 text-center animate-fade-up my-4">
+                        <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" />
+                        <h3 className="text-xl font-bold mb-2">Real-Time Price Updates</h3>
+                        <p className="text-muted-foreground">
+                            Stay informed with live market data and price movements.
+                        </p>
+                    </div>
                 </div>
             </section>
 
