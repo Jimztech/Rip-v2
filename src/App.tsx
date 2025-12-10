@@ -1,6 +1,7 @@
 import Chat from "./components/Chat";
-import LandingPage from "./components/LandingPage";
+import LandingPage from "./pages/LandingPage";
 import TrendingPage from "./components/TrendingPage";
+import Login from "./pages/Login";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -14,6 +15,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
 
           <Route path="/chat" element={<Chat />} />
+
+          <Route path="/login" element={<Login />} />
 
           <Route path="/trending" element={<TrendingPage />} />
 
