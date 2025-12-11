@@ -544,5 +544,5 @@ app.get('/api/health', (req, res) => {
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on http://localhost:${PORT}`);
-    console.log(`Gemini AI: ${process.env.GEMINI_API_KEY ? 'Configured ✓' : 'Missing ✗'}`);
+    console.log(`Gemini AI: ${process.env.GEMINI_API_KEY ? 'Configured' : 'Missing'}`);
 });
