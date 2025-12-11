@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react"
 import ThemeToggle from "./elements/ThemeToggle";
 
+
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 

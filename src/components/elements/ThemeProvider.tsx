@@ -8,8 +8,6 @@ type ThemeProviderProps = {
     defaultTheme?: Theme;
 };
 
-
-
 export function ThemeProvider({
     children,
     defaultTheme = "dark",

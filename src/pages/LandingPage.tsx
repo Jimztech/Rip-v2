@@ -86,29 +86,29 @@ export default function LandingPage() {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="glass-card p-8 text-center animate-fade-up my-4">
+                        <div className="glass-card p-8 text-center animate-fade-up" style={{ animationDelay: "0.5s" }}>
                             <Brain className="w-12 h-12 text-primary mx-auto mb-4" />
                             <h3 className="text-xl font-bold mb-2">Get AI Crypto Advice</h3>
                             <p className="text-muted-foreground">
                                 Receive personalized investment insights powered by advanced AI models.
                             </p>
                         </div>
-                    </div>
 
-                    <div className="glass-card p-8 text-center animate-fade-up my-4">
-                        <Clock className="w-12 h-12 text-primary mx-auto mb-4" />
-                        <h3 className="text-xl font-bold mb-2">Track New Coins Early</h3>
-                        <p className="text-muted-foreground">
-                            Discover emerging cryptocurrencies before they hit mainstream
-                        </p>
-                    </div>
+                        <div className="glass-card p-8 text-center animate-fade-up" style={{ animationDelay: "0.6s" }}>
+                            <Clock className="w-12 h-12 text-primary mx-auto mb-4" />
+                            <h3 className="text-xl font-bold mb-2">Track New Coins Early</h3>
+                            <p className="text-muted-foreground">
+                                Discover emerging cryptocurrencies before they hit mainstream
+                            </p>
+                        </div>
 
-                    <div className="glass-card p-8 text-center animate-fade-up my-4">
-                        <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" />
-                        <h3 className="text-xl font-bold mb-2">Real-Time Price Updates</h3>
-                        <p className="text-muted-foreground">
-                            Stay informed with live market data and price movements.
-                        </p>
+                        <div className="glass-card p-8 text-center animate-fade-up" style={{ animationDelay: "0.7s" }}>
+                            <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" />
+                            <h3 className="text-xl font-bold mb-2">Real-Time Price Updates</h3>
+                            <p className="text-muted-foreground">
+                                Stay informed with live market data and price movements.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
